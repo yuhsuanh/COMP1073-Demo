@@ -59,7 +59,7 @@ function addToProcessTable() {
     deleteButton.addEventListener('click', removeFromProcessTable);
     completeButton.addEventListener('click', completeFromProcessTable);
 
-    //clear input vlaue
+    //clear input value
     goal.value = "";
 }
 
@@ -67,9 +67,10 @@ function addToProcessTable() {
 let adding = document.getElementById('adding');
 adding.addEventListener('click', addToProcessTable);
 
+
 let goalInput = document.querySelector('#goal');
 goalInput.addEventListener('keydown', function(event) {
-    if(event.keyCode === 13) {
+    if(event.keyCode === 13) { //Enter key
         event.preventDefault(); //cancel default action
         document.getElementById('adding').click();
     }
