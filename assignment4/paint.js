@@ -1,8 +1,7 @@
 class StarRatingPainter {
   static get inputProperties() {
     return [
-      '--rating',
-      // '--star-corners',
+      'rating',
       'stroke-width',
       'stroke',
       'fill'
@@ -11,10 +10,8 @@ class StarRatingPainter {
 
   paint(ctx, geom, props) {
     this.ctx = ctx;
-    const ratingInput = parseFloat(props.get('--rating').toString(), 10);
+    const ratingInput = parseFloat(props.get('rating').toString(), 10);
     const rating = this._limitRating(ratingInput);
-    // const cornersInput = parseInt(props.get('--star-corners').toString(), 10);
-    // const corners = this._limitCorners(cornersInput);
     const corners = 5;
     const strokeWidth = props.get('stroke-width').value || 2;
     const strokeColor = props.get('stroke').toString().trim() || 'orange';
@@ -45,18 +42,6 @@ class StarRatingPainter {
 
     return input;
   }
-
-  // _limitCorners(input) {
-  //   if (input < 5) {
-  //     return 5;
-  //   }
-
-  //   if (input > 10) {
-  //     return 10;
-  //   }
-
-  //   return input;
-  // }
 
   _drawStar(R, cX, cY, N) {
     this.ctx.beginPath();
