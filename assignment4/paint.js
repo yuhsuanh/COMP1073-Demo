@@ -1,20 +1,20 @@
 class StarRatingPainter {
-  static get inputProperties() {
-    return [
-      'rating',
-      'stroke-width',
-      'stroke',
-      'fill'
-    ];
-  }
+  // static get inputProperties() {
+  //   return [
+  //     'rating',
+  //     'stroke-width',
+  //     'stroke',
+  //     'fill'
+  //   ];
+  // }
 
   paint(ctx, geom, props) {
     this.ctx = ctx;
     const ratingInput = parseFloat(props.get('rating').toString(), 10);
     const rating = this._limitRating(ratingInput);
     const corners = 5;
-    const strokeWidth = props.get('stroke-width').value || 2;
-    const strokeColor = props.get('stroke').toString().trim() || 'orange';
+    //const strokeWidth = props.get('stroke-width').value || 2;
+    //const strokeColor = props.get('stroke').toString().trim() || 'orange';
     const fillColor = props.get('fill').toString().trim() || 'orange';
 
     const radius = geom.height / 2;
@@ -26,7 +26,7 @@ class StarRatingPainter {
       const fill = rating - i;
 
       this._drawStar(radius, cX, cY, corners);
-      this._stroke(strokeWidth, strokeColor);
+      //this._stroke(strokeWidth, strokeColor);
       this._fill(fill, fillColor, cX, radius);
     }
   }
@@ -59,11 +59,11 @@ class StarRatingPainter {
     this.ctx.closePath();
   }
 
-  _stroke(strokeWidth, strokeColor) {
-    this.ctx.lineWidth = strokeWidth;
-    this.ctx.strokeStyle = strokeColor;
-    this.ctx.stroke();
-  }
+  // _stroke(strokeWidth, strokeColor) {
+  //   this.ctx.lineWidth = strokeWidth;
+  //   this.ctx.strokeStyle = strokeColor;
+  //   this.ctx.stroke();
+  // }
 
   _fill(fill, fillColor, cX, R) {
     if (fill <= 0) {
