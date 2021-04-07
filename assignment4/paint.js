@@ -6,19 +6,30 @@ class StarRatingPainter {
     const rating = 4.5;
     const corners = 5;
     const fillColor = 'orange';
+    const strokeWidth = 2;
+    const strokeColor = 'orange';
+
 
     const radius = geom.height / 2;
     const point = geom.width / 5;
     const cY = radius;
 
     for (let i=0; i<5; i++) {
-      const cX = (i*point) + (point/2);
+      const cX = (i * point) + (point / 2);
       const fill = rating - i;
 
       this.drawStar(radius, cX, cY, corners);
+      this._stroke(strokeWidth, strokeColor);
       this.fillStar(fill, fillColor, cX, radius);
     }
   }
+
+    _stroke(strokeWidth, strokeColor) {
+    this.ctx.lineWidth = strokeWidth;
+    this.ctx.strokeStyle = strokeColor;
+    this.ctx.stroke();
+  }
+
 
   drawStar(R, cX, cY, N) {
     this.ctx.beginPath();
@@ -55,7 +66,6 @@ class StarRatingPainter {
 
       this.ctx.fillStyle = gradient;
     }
-
     this.ctx.fill();
   }
 }
