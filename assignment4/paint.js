@@ -1,49 +1,26 @@
 class StarRatingPainter {
-  // static get inputProperties() {
-  //   return [
-  //     'rating',
-  //     'stroke-width',
-  //     'stroke',
-  //     'fill'
-  //   ];
-  // }
 
   paint(ctx, geom, props) {
     this.ctx = ctx;
-    const ratingInput = parseFloat(props.get('rating').toString(), 10);
-    const rating = this._limitRating(ratingInput);
+    //Default Setting Value and Color
+    const rating = 4.5;
     const corners = 5;
-    //const strokeWidth = props.get('stroke-width').value || 2;
-    //const strokeColor = props.get('stroke').toString().trim() || 'orange';
-    const fillColor = props.get('fill').toString().trim() || 'orange';
+    const fillColor = 'orange';
 
     const radius = geom.height / 2;
-    const point = (geom.width / 5);
+    const point = geom.width / 5;
     const cY = radius;
 
-    for (let i = 0; i < 5; i++) {
-      const cX = (i * point) + (point / 2);
+    for (let i=0; i<5; i++) {
+      const cX = (i*point) + (point/2);
       const fill = rating - i;
 
-      this._drawStar(radius, cX, cY, corners);
-      //this._stroke(strokeWidth, strokeColor);
-      this._fill(fill, fillColor, cX, radius);
+      this.drawStar(radius, cX, cY, corners);
+      this.fillStar(fill, fillColor, cX, radius);
     }
   }
 
-  _limitRating(input) {
-    if (input < 0) {
-      return 0;
-    }
-
-    if (input > 5) {
-      return 5;
-    }
-
-    return input;
-  }
-
-  _drawStar(R, cX, cY, N) {
+  drawStar(R, cX, cY, N) {
     this.ctx.beginPath();
     this.ctx.moveTo(cX, cY + R / 2);
 
@@ -59,13 +36,8 @@ class StarRatingPainter {
     this.ctx.closePath();
   }
 
-  // _stroke(strokeWidth, strokeColor) {
-  //   this.ctx.lineWidth = strokeWidth;
-  //   this.ctx.strokeStyle = strokeColor;
-  //   this.ctx.stroke();
-  // }
 
-  _fill(fill, fillColor, cX, R) {
+  fillStar(fill, fillColor, cX, R) {
     if (fill <= 0) {
       return;
     }
@@ -88,4 +60,5 @@ class StarRatingPainter {
   }
 }
 
+//Register Paint Class
 registerPaint('star-rating', StarRatingPainter);
