@@ -3,9 +3,11 @@ class StarRatingPainter {
   paint(ctx, geom, props) {
     this.ctx = ctx;
     //Default Setting Value and Color
-    const rating = 4.5;
+    const rating = 4.5; //maxmum is 5
     const corners = 5;
+    //For Star Fill
     const fillColor = 'orange';
+    //For Star Border
     const strokeWidth = 2;
     const strokeColor = 'orange';
 
@@ -19,17 +21,10 @@ class StarRatingPainter {
       const fill = rating - i;
 
       this.drawStar(radius, cX, cY, corners);
-      this._stroke(strokeWidth, strokeColor);
+      this.strokeStar(strokeWidth, strokeColor);
       this.fillStar(fill, fillColor, cX, radius);
     }
   }
-
-    _stroke(strokeWidth, strokeColor) {
-    this.ctx.lineWidth = strokeWidth;
-    this.ctx.strokeStyle = strokeColor;
-    this.ctx.stroke();
-  }
-
 
   drawStar(R, cX, cY, N) {
     this.ctx.beginPath();
@@ -47,6 +42,13 @@ class StarRatingPainter {
     this.ctx.closePath();
   }
 
+
+  strokeStar(strokeWidth, strokeColor) {
+    this.ctx.lineWidth = strokeWidth;
+    this.ctx.strokeStyle = strokeColor;
+    this.ctx.stroke();
+  }
+  
 
   fillStar(fill, fillColor, cX, R) {
     if (fill <= 0) {
